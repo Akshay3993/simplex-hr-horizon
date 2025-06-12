@@ -142,14 +142,16 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Company Stats */}
+        {/* Company Stats - Enhanced visibility */}
         <div className="bg-gradient-primary rounded-3xl p-8 md:p-16 text-white text-center relative overflow-hidden animate-fade-in-up">
-          <div className="absolute inset-0 opacity-10">
+          {/* Enhanced Background Image with better visibility */}
+          <div className="absolute inset-0 opacity-40">
             <img 
               src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop"
               alt="Office workspace"
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-br from-simplex-primary/40 via-simplex-accent/20 to-simplex-primary/60"></div>
           </div>
           <div className="relative z-10">
             <h3 className="text-3xl md:text-5xl font-bold mb-8">Our Journey So Far</h3>

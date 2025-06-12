@@ -107,13 +107,14 @@ const WhySimplexSection = () => {
 
         {/* Stats Section */}
         <div className="bg-gradient-primary rounded-3xl p-8 md:p-16 text-white relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
+          {/* Enhanced Background Image Visibility */}
+          <div className="absolute inset-0 opacity-30">
             <img 
               src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=1200&h=600&fit=crop"
               alt="Global network"
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-r from-simplex-primary/60 via-transparent to-simplex-accent/60"></div>
           </div>
           
           <div className="relative z-10">
