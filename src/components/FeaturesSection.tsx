@@ -1,6 +1,7 @@
 
-import { Users, Clock, Calendar, TrendingUp, Search, BarChart, FileText, Map, Phone, PieChart, Zap } from "lucide-react";
+import { Users, Clock, Calendar, TrendingUp, Search, BarChart, FileText, Map, Phone, PieChart, Zap, Building2, Shield, Settings } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const FeaturesSection = () => {
   const features = [
@@ -8,37 +9,37 @@ const FeaturesSection = () => {
       icon: Users,
       title: "Employee & Contractor Management",
       description: "Comprehensive database for all workforce management with detailed profiles, documents, and organizational hierarchy.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop"
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: Clock,
       title: "Attendance & Biometric Integration",
       description: "Real-time attendance tracking with seamless biometric device integration and automated reporting.",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop"
+      color: "from-green-500 to-green-600"
     },
     {
       icon: Calendar,
       title: "Leave & Holiday Management",
       description: "Streamlined leave application process with automated approvals, balance tracking, and holiday calendar management.",
-      image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=400&h=300&fit=crop"
+      color: "from-purple-500 to-purple-600"
     },
     {
       icon: TrendingUp,
       title: "Payroll Automation",
       description: "End-to-end payroll processing with tax calculations, statutory compliance, and direct bank transfers.",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop"
+      color: "from-orange-500 to-orange-600"
     },
     {
       icon: Search,
       title: "Recruitment Tracking",
       description: "Complete applicant tracking system from job posting to onboarding with interview scheduling and evaluation.",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop"
+      color: "from-cyan-500 to-cyan-600"
     },
     {
       icon: BarChart,
       title: "Performance Management",
       description: "360-degree performance reviews, goal setting, continuous feedback, and career development planning.",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=300&fit=crop"
+      color: "from-red-500 to-red-600"
     }
   ];
 
@@ -75,17 +76,9 @@ const FeaturesSection = () => {
               className="group bg-white/90 backdrop-blur-sm hover-lift transition-all duration-500 border-0 shadow-xl hover:shadow-2xl overflow-hidden animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={feature.image} 
-                  alt={feature.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute top-4 left-4">
-                  <div className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <feature.icon className="h-6 w-6 text-simplex-primary" />
-                  </div>
+              <div className={`relative h-32 bg-gradient-to-r ${feature.color} flex items-center justify-center`}>
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <feature.icon className="h-8 w-8 text-white" />
                 </div>
               </div>
               <CardContent className="p-6">
@@ -122,11 +115,9 @@ const FeaturesSection = () => {
         <div className="text-center animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
           <div className="bg-gradient-to-r from-white to-simplex-light rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto border border-white/50 hover-lift">
             <div className="flex items-center justify-center mb-6">
-              <img 
-                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=300&fit=crop"
-                alt="HR Dashboard"
-                className="rounded-2xl shadow-lg w-full max-w-md"
-              />
+              <div className="w-24 h-24 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-lg">
+                <Building2 className="h-12 w-12 text-white" />
+              </div>
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Ready to Experience These Features?
@@ -134,12 +125,11 @@ const FeaturesSection = () => {
             <p className="text-gray-600 mb-6 text-lg">
               Schedule a personalized demo to see how Simplex HR can transform your workforce management.
             </p>
-            <button 
-              className="bg-gradient-primary text-white px-10 py-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-300 shadow-xl hover-lift text-lg"
-              onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Schedule Demo Now
-            </button>
+            <Link to="/demo">
+              <button className="bg-gradient-primary text-white px-10 py-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-300 shadow-xl hover-lift text-lg">
+                Schedule Demo Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>

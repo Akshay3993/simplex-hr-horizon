@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +11,6 @@ const Navigation = () => {
     { name: "Home", href: "#home" },
     { name: "Features", href: "#features" },
     { name: "Why Simplex", href: "#why-simplex" },
-    { name: "About Us", href: "#about" },
     { name: "Contact", href: "#contact" }
   ];
 
@@ -40,12 +40,11 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
-            <Button 
-              className="gradient-primary text-white hover:opacity-90 transition-opacity"
-              onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Request Demo
-            </Button>
+            <Link to="/demo">
+              <Button className="gradient-primary text-white hover:opacity-90 transition-opacity">
+                Request Demo
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -74,15 +73,14 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
-              <Button 
-                className="gradient-primary text-white w-full mt-4"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Request Demo
-              </Button>
+              <Link to="/demo">
+                <Button 
+                  className="gradient-primary text-white w-full mt-4"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Request Demo
+                </Button>
+              </Link>
             </div>
           </div>
         )}

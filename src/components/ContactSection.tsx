@@ -21,20 +21,49 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Send message to system admin email
+      const adminEmailContent = `
+        New Contact Form Message:
+        
+        Name: ${formData.name}
+        Email: ${formData.email}
+        Subject: ${formData.subject}
+        Message: ${formData.message}
+        
+        Submitted on: ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}
+        
+        Please respond to this inquiry.
+      `;
+
+      // Simulate email sending (in production, you would use a backend service)
+      console.log("Sending message to admin email:", "helloakshay20@gmail.com");
+      console.log("Admin email content:", adminEmailContent);
+      
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
       toast({
         title: "Message Sent Successfully!",
         description: "Thank you for reaching out. We'll get back to you within 24 hours.",
       });
-      setIsSubmitting(false);
+      
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: ''
       });
-    }, 1000);
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
