@@ -39,7 +39,7 @@ const WhySimplexSection = () => {
   ];
 
   return (
-    <section id="why-simplex" className="section-spacing professional-bg relative overflow-hidden">
+    <section id="why-simplex" className="section-spacing bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -50,7 +50,7 @@ const WhySimplexSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20 animate-fade-in-up">
-          <div className="inline-flex items-center px-6 py-3 rounded-full card-elevated text-simplex-primary font-semibold text-sm mb-6 hover-lift brand-shadow">
+          <div className="inline-flex items-center px-6 py-3 rounded-full bg-white shadow-lg text-simplex-primary font-semibold text-sm mb-6 hover-lift">
             <Star className="w-4 h-4 mr-2" />
             Why Choose Simplex
           </div>
@@ -58,7 +58,7 @@ const WhySimplexSection = () => {
             Built for the
             <span className="text-gradient block">Future of Work</span>
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Experience the power of modern HR technology with enterprise-grade security, 
             unlimited scalability, and seamless integration capabilities.
           </p>
@@ -69,7 +69,7 @@ const WhySimplexSection = () => {
           {benefits.map((benefit, index) => (
             <Card 
               key={index} 
-              className="group card-elevated hover-lift transition-all duration-500 border-0 brand-shadow-hover overflow-hidden animate-fade-in-up"
+              className="group bg-white hover-lift transition-all duration-500 border-0 shadow-xl hover:shadow-2xl overflow-hidden animate-fade-in-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="relative h-48 overflow-hidden">
@@ -105,44 +105,44 @@ const WhySimplexSection = () => {
           ))}
         </div>
 
-        {/* Stats Section - Enhanced visibility and contrast */}
-        <div className="bg-white rounded-3xl p-8 md:p-16 relative overflow-hidden animate-fade-in-up brand-shadow-hover border border-gray-200" style={{ animationDelay: '0.8s' }}>
-          {/* Background Pattern for texture */}
-          <div className="absolute inset-0 opacity-3">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23003366' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}></div>
+        {/* Stats Section */}
+        <div className="bg-gradient-primary rounded-3xl p-8 md:p-16 text-white relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+          {/* Enhanced Background Image Visibility - Increased to 70% opacity */}
+          <div className="absolute inset-0 opacity-70">
+            <img 
+              src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=1200&h=600&fit=crop"
+              alt="Global network"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-simplex-primary/40 via-transparent to-simplex-accent/40"></div>
           </div>
-          
-          {/* Gradient overlay for professional look */}
-          <div className="absolute inset-0 bg-gradient-to-br from-simplex-primary/5 via-transparent to-simplex-accent/5 rounded-3xl"></div>
           
           <div className="relative z-10">
             <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
+              <h3 className="text-3xl md:text-5xl font-bold mb-6">
                 Trusted by Industry Leaders
               </h3>
-              <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
                 Join thousands of companies worldwide who have transformed their HR operations with Simplex.
               </p>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div className="animate-counter group">
-                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300 text-simplex-primary">500+</div>
-                <div className="text-lg text-gray-600">Companies</div>
+                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                <div className="text-lg opacity-90">Companies</div>
               </div>
               <div className="animate-counter group" style={{ animationDelay: '0.2s' }}>
-                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300 text-simplex-primary">50M+</div>
-                <div className="text-lg text-gray-600">Employees</div>
+                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">50M+</div>
+                <div className="text-lg opacity-90">Employees</div>
               </div>
               <div className="animate-counter group" style={{ animationDelay: '0.4s' }}>
-                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300 text-simplex-primary">99.9%</div>
-                <div className="text-lg text-gray-600">Uptime</div>
+                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">99.9%</div>
+                <div className="text-lg opacity-90">Uptime</div>
               </div>
               <div className="animate-counter group" style={{ animationDelay: '0.6s' }}>
-                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300 text-simplex-primary">24/7</div>
-                <div className="text-lg text-gray-600">Support</div>
+                <div className="text-4xl md:text-6xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                <div className="text-lg opacity-90">Support</div>
               </div>
             </div>
           </div>

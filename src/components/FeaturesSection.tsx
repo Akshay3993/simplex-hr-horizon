@@ -44,17 +44,17 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section id="features" className="section-spacing professional-bg-alt relative overflow-hidden">
+    <section id="features" className="section-spacing bg-gradient-to-b from-white via-simplex-light/30 to-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-32 right-20 w-64 h-64 bg-simplex-accent/8 rounded-full blur-2xl animate-float"></div>
-        <div className="absolute bottom-32 left-20 w-80 h-80 bg-simplex-primary/8 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-32 right-20 w-64 h-64 bg-simplex-accent/5 rounded-full blur-2xl animate-float"></div>
+        <div className="absolute bottom-32 left-20 w-80 h-80 bg-simplex-primary/5 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center px-6 py-3 rounded-full card-elevated text-simplex-accent font-semibold text-sm mb-6 hover-lift brand-shadow">
+          <div className="inline-flex items-center px-6 py-3 rounded-full bg-white shadow-lg text-simplex-accent font-semibold text-sm mb-6 hover-lift">
             <Zap className="w-4 h-4 mr-2" />
             Comprehensive Features
           </div>
@@ -62,7 +62,7 @@ const FeaturesSection = () => {
             Everything You Need for
             <span className="text-gradient block">Modern HR Management</span>
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover our comprehensive suite of HR modules designed to streamline every aspect 
             of your workforce management operations.
           </p>
@@ -73,7 +73,7 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className="group card-elevated hover-lift transition-all duration-500 border-0 brand-shadow-hover overflow-hidden animate-fade-in-up"
+              className="group bg-white/90 backdrop-blur-sm hover-lift transition-all duration-500 border-0 shadow-xl hover:shadow-2xl overflow-hidden animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className={`relative h-32 bg-gradient-to-r ${feature.color} flex items-center justify-center`}>
@@ -103,7 +103,7 @@ const FeaturesSection = () => {
             { icon: PieChart, title: "Analytics & Reports", color: "bg-red-500" }
           ].map((item, index) => (
             <div key={index} className="text-center animate-fade-in-up" style={{ animationDelay: `${1 + index * 0.1}s` }}>
-              <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-4 hover-lift brand-shadow`}>
+              <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-4 hover-lift shadow-lg`}>
                 <item.icon className="h-8 w-8 text-white" />
               </div>
               <h4 className="font-semibold text-gray-900 text-sm">{item.title}</h4>
@@ -111,37 +111,25 @@ const FeaturesSection = () => {
           ))}
         </div>
 
-        {/* Bottom CTA - Enhanced with better contrast */}
+        {/* Bottom CTA */}
         <div className="text-center animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
-          <div className="bg-white rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto border border-gray-200 hover-lift relative overflow-hidden brand-shadow-hover">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-3">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23003366' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}></div>
-            </div>
-            
-            {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-simplex-primary/5 via-transparent to-simplex-accent/5 rounded-3xl"></div>
-            
-            <div className="relative z-10">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-24 h-24 bg-gradient-primary rounded-2xl flex items-center justify-center brand-shadow">
-                  <Building2 className="h-12 w-12 text-white" />
-                </div>
+          <div className="bg-gradient-to-r from-white to-simplex-light rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto border border-white/50 hover-lift">
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-24 h-24 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-lg">
+                <Building2 className="h-12 w-12 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                Ready to Experience These Features?
-              </h3>
-              <p className="text-gray-700 mb-6 text-lg max-w-2xl mx-auto">
-                Schedule a personalized demo to see how Simplex HR can transform your workforce management and boost your team's productivity.
-              </p>
-              <Link to="/demo">
-                <button className="bg-gradient-primary text-white px-12 py-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-300 brand-shadow hover-lift text-lg">
-                  Schedule Demo Now
-                </button>
-              </Link>
             </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              Ready to Experience These Features?
+            </h3>
+            <p className="text-gray-600 mb-6 text-lg">
+              Schedule a personalized demo to see how Simplex HR can transform your workforce management.
+            </p>
+            <Link to="/demo">
+              <button className="bg-gradient-primary text-white px-10 py-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-300 shadow-xl hover-lift text-lg">
+                Schedule Demo Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>

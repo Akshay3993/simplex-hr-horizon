@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
+    --background: 0 0% 100%;
     --foreground: 214 32% 20%;
 
     --card: 0 0% 100%;
@@ -40,7 +40,7 @@
     /* Custom Simplex Colors */
     --simplex-primary: 213 100% 20%; /* Deep Blue #003366 */
     --simplex-accent: 199 100% 46%; /* Sky Blue #00ADEF */
-    --simplex-light: 210 15% 94%; /* Professional Light */
+    --simplex-light: 0 0% 97.6%; /* Soft White #F9F9F9 */
     --simplex-gray: 0 0% 40%; /* Gray #666666 */
   }
 
@@ -83,15 +83,7 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background: linear-gradient(135deg, 
-      hsl(213, 35%, 95%) 0%, 
-      hsl(210, 25%, 92%) 15%, 
-      hsl(213, 20%, 88%) 30%, 
-      hsl(199, 15%, 85%) 45%, 
-      hsl(213, 20%, 88%) 60%, 
-      hsl(210, 25%, 92%) 75%, 
-      hsl(213, 35%, 95%) 100%);
-    min-height: 100vh;
+    background: linear-gradient(180deg, hsl(var(--simplex-light)) 0%, rgba(0, 173, 239, 0.03) 50%, hsl(var(--simplex-light)) 100%);
   }
 
   html {
@@ -110,31 +102,6 @@
 
   .gradient-radial {
     background: radial-gradient(ellipse at center, rgba(0, 173, 239, 0.1) 0%, transparent 70%);
-  }
-
-  .gradient-professional {
-    background: linear-gradient(135deg, 
-      rgba(0, 51, 102, 0.95) 0%, 
-      rgba(0, 102, 153, 0.95) 50%, 
-      rgba(0, 173, 239, 0.95) 100%);
-  }
-
-  .professional-bg {
-    background: linear-gradient(135deg, 
-      hsl(213, 30%, 94%) 0%, 
-      hsl(210, 20%, 90%) 25%, 
-      hsl(213, 15%, 86%) 50%, 
-      hsl(210, 20%, 90%) 75%, 
-      hsl(213, 30%, 94%) 100%);
-  }
-
-  .professional-bg-alt {
-    background: linear-gradient(135deg, 
-      hsl(213, 25%, 91%) 0%, 
-      hsl(210, 15%, 87%) 25%, 
-      hsl(213, 10%, 83%) 50%, 
-      hsl(210, 15%, 87%) 75%, 
-      hsl(213, 25%, 91%) 100%);
   }
 
   .text-gradient {
@@ -197,24 +164,7 @@
   .section-spacing {
     @apply py-16 lg:py-20;
   }
-
-  .card-elevated {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 51, 102, 0.1);
-  }
-
-  .brand-shadow {
-    box-shadow: 0 4px 20px rgba(0, 51, 102, 0.15);
-  }
-
-  .brand-shadow-hover:hover {
-    box-shadow: 0 8px 40px rgba(0, 51, 102, 0.2);
-  }
 }
-
-/* ... keep existing code (keyframes) the same ... */
 
 @keyframes fadeInUp {
   from {
