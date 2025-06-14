@@ -50,7 +50,7 @@ const WhySimplexSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20 animate-fade-in-up">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-white shadow-lg text-simplex-primary font-semibold text-sm mb-6 hover-lift">
+          <div className="inline-flex items-center px-6 py-3 rounded-full card-elevated text-simplex-primary font-semibold text-sm mb-6 hover-lift brand-shadow">
             <Star className="w-4 h-4 mr-2" />
             Why Choose Simplex
           </div>
@@ -58,7 +58,7 @@ const WhySimplexSection = () => {
             Built for the
             <span className="text-gradient block">Future of Work</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Experience the power of modern HR technology with enterprise-grade security, 
             unlimited scalability, and seamless integration capabilities.
           </p>
@@ -69,7 +69,7 @@ const WhySimplexSection = () => {
           {benefits.map((benefit, index) => (
             <Card 
               key={index} 
-              className="group bg-white hover-lift transition-all duration-500 border-0 shadow-xl hover:shadow-2xl overflow-hidden animate-fade-in-up"
+              className="group card-elevated hover-lift transition-all duration-500 border-0 brand-shadow-hover overflow-hidden animate-fade-in-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="relative h-48 overflow-hidden">
@@ -105,10 +105,10 @@ const WhySimplexSection = () => {
           ))}
         </div>
 
-        {/* Stats Section - Enhanced visibility with white background */}
-        <div className="bg-white rounded-3xl p-8 md:p-16 relative overflow-hidden animate-fade-in-up shadow-2xl border border-gray-100" style={{ animationDelay: '0.8s' }}>
+        {/* Stats Section - Enhanced visibility and contrast */}
+        <div className="bg-white rounded-3xl p-8 md:p-16 relative overflow-hidden animate-fade-in-up brand-shadow-hover border border-gray-200" style={{ animationDelay: '0.8s' }}>
           {/* Background Pattern for texture */}
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-3">
             <div className="absolute inset-0" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23003366' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }}></div>
@@ -122,7 +122,7 @@ const WhySimplexSection = () => {
               <h3 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
                 Trusted by Industry Leaders
               </h3>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
                 Join thousands of companies worldwide who have transformed their HR operations with Simplex.
               </p>
             </div>
