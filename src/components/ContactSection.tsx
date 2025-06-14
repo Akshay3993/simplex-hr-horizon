@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -22,26 +22,17 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Send message to system admin email
-      const adminEmailContent = `
-        New Contact Form Message:
-        
-        Name: ${formData.name}
-        Email: ${formData.email}
-        Subject: ${formData.subject}
-        Message: ${formData.message}
-        
-        Submitted on: ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}
-        
-        Please respond to this inquiry.
-      `;
-
-      // Simulate email sending (in production, you would use a backend service)
-      console.log("Sending message to admin email:", "helloakshay20@gmail.com");
-      console.log("Admin email content:", adminEmailContent);
+      console.log("Submitting contact message to Supabase Edge Function...");
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      console.log("Contact message response:", data);
       
       toast({
         title: "Message Sent Successfully!",

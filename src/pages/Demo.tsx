@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const Demo = () => {
   const [formData, setFormData] = useState({
@@ -25,50 +25,17 @@ const Demo = () => {
     setIsSubmitting(true);
     
     try {
-      // Send confirmation email to user
-      const userEmailContent = `
-        Dear ${formData.name},
-        
-        Thank you for requesting a demo of Simplex HR Solutions. We have received your request and our team will review it shortly.
-        
-        Demo Request Details:
-        - Name: ${formData.name}
-        - Email: ${formData.email}
-        - Company: ${formData.company}
-        - Phone: ${formData.phone}
-        - Employees: ${formData.employees}
-        - Message: ${formData.message}
-        
-        Our administrator will review your request and send you a confirmation email with demo scheduling details within 24 hours.
-        
-        Best regards,
-        Simplex HR Solutions Team
-      `;
+      console.log("Submitting demo request to Supabase Edge Function...");
       
-      // Send inquiry email to system admin
-      const adminEmailContent = `
-        New Demo Request Received:
-        
-        Name: ${formData.name}
-        Email: ${formData.email}
-        Company: ${formData.company}
-        Phone: ${formData.phone}
-        Number of Employees: ${formData.employees}
-        Message: ${formData.message}
-        
-        Requested on: ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}
-        
-        Please review and respond to this demo request.
-      `;
+      const { data, error } = await supabase.functions.invoke('send-demo-email', {
+        body: formData
+      });
 
-      // Simulate email sending (in production, you would use a backend service)
-      console.log("Sending confirmation email to user:", formData.email);
-      console.log("User email content:", userEmailContent);
-      console.log("Sending inquiry email to admin:", "helloakshay20@gmail.com");
-      console.log("Admin email content:", adminEmailContent);
-      
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      if (error) {
+        throw error;
+      }
+
+      console.log("Demo request response:", data);
       
       toast({
         title: "Demo Request Submitted Successfully!",
