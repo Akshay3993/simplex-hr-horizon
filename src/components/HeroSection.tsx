@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-simplex-light/30 via-white to-simplex-accent/10 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center professional-bg relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-simplex-primary/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-simplex-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-simplex-primary/3 to-transparent rounded-full"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-simplex-primary/8 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-simplex-accent/8 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-simplex-primary/5 to-transparent rounded-full"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 relative z-10">
@@ -63,7 +63,7 @@ const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="px-8 py-4 text-lg font-semibold border-2 border-simplex-primary text-simplex-primary hover:bg-simplex-primary hover:text-white transition-all duration-300 hover-lift"
+                className="px-8 py-4 text-lg font-semibold border-2 border-simplex-primary text-simplex-primary hover:bg-simplex-primary hover:text-white transition-all duration-300 hover-lift bg-white/80 backdrop-blur-sm"
                 onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <Play className="mr-2 h-5 w-5" />
@@ -72,7 +72,7 @@ const HeroSection = () => {
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-8 pt-8 border-t border-gray-200">
+            <div className="mt-8 pt-8 border-t border-gray-200/50">
               <p className="text-sm text-gray-500 mb-4">Trusted by 500+ companies worldwide</p>
               <div className="flex items-center justify-center lg:justify-start space-x-8 opacity-60">
                 <div className="text-gray-400 font-semibold">Microsoft</div>
