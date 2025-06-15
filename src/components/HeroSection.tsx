@@ -28,8 +28,7 @@ const HeroSection = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
-              Transform your HR operations with Simplex HR Solutions — the complete platform for 
-              modern businesses to manage employees, automate payroll, and boost productivity.
+              Transform your HR operations with Simplex HR Solutions
             </p>
 
             {/* Key Benefits */}
