@@ -54,7 +54,7 @@ const HeroSection = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/demo">
-                <Button size="lg" className="bg-black text-white px-8 py-4 text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-xl hover-lift">
+                <Button size="lg" className="gradient-primary text-white px-8 py-4 text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-xl hover-lift">
                   Schedule Demo Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -68,17 +68,6 @@ const HeroSection = () => {
                 <Play className="mr-2 h-5 w-5" />
                 Watch Demo
               </Button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <p className="text-sm text-gray-500 mb-4">Trusted by 500+ companies worldwide</p>
-              <div className="flex items-center justify-center lg:justify-start space-x-8 opacity-60">
-                <div className="text-gray-400 font-semibold">Microsoft</div>
-                <div className="text-gray-400 font-semibold">Google</div>
-                <div className="text-gray-400 font-semibold">Amazon</div>
-                <div className="text-gray-400 font-semibold">Meta</div>
-              </div>
             </div>
           </div>
 

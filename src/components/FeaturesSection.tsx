@@ -1,7 +1,7 @@
-
 import { Users, Clock, Calendar, TrendingUp, Search, BarChart, FileText, Map, Phone, PieChart, Zap, Building2, Shield, Settings } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const FeaturesSection = () => {
   const features = [
@@ -112,23 +112,23 @@ const FeaturesSection = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
+        <div className="text-center">
           <div className="bg-gradient-to-r from-white to-simplex-light rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto border border-white/50 hover-lift">
             <div className="flex items-center justify-center mb-6">
               <div className="w-24 h-24 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-lg">
                 <Building2 className="h-12 w-12 text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-3xl font-bold text-black mb-4">
               Ready to Experience These Features?
             </h3>
-            <p className="text-gray-600 mb-6 text-lg">
+            <p className="text-black mb-6 text-lg">
               Schedule a personalized demo to see how Simplex HR can transform your workforce management.
             </p>
             <Link to="/demo">
-              <button className="bg-gradient-primary text-white px-10 py-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-300 shadow-xl hover-lift text-lg">
+              <Button className="gradient-primary text-white hover:opacity-90 transition-opacity">
                 Schedule Demo Now
-              </button>
+              </Button>
             </Link>
           </div>
         </div>

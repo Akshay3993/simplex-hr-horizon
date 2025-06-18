@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -183,7 +182,7 @@ const ContactSection = () => {
                             <FormLabel>Full Name *</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="John Doe"
+                                placeholder="Enter name here"
                                 className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
                                 {...field}
                               />
@@ -201,7 +200,7 @@ const ContactSection = () => {
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="john@company.com"
+                                placeholder="employee@company.com"
                                 className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
                                 {...field}
                               />
