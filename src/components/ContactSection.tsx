@@ -1,4 +1,8 @@
+
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,45 +10,60 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  const handleSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     
     try {
       console.log("Submitting contact message to Supabase Edge Function...");
       
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
+      const { data: responseData, error } = await supabase.functions.invoke('send-contact-email', {
+        body: data
       });
 
       if (error) {
         throw error;
       }
 
-      console.log("Contact message response:", data);
+      console.log("Contact message response:", responseData);
       
       toast({
         title: "Message Sent Successfully!",
         description: "Thank you for reaching out. We'll get back to you within 24 hours.",
       });
       
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      form.reset();
     } catch (error) {
       console.error("Error sending message:", error);
       toast({
@@ -55,13 +74,6 @@ const ContactSection = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
   };
 
   const contactInfo = [
@@ -160,91 +172,103 @@ const ContactSection = () => {
             <Card className="bg-white shadow-xl border-0 hover-lift">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
-                      </label>
-                      <Input
-                        id="name"
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
                         name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                        placeholder="John Doe"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Full Name *</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="John Doe"
+                                className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
-                      </label>
-                      <Input
-                        id="email"
+                      <FormField
+                        control={form.control}
                         name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                        placeholder="john@company.com"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email Address *</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                placeholder="john@company.com"
+                                className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject *
-                    </label>
-                    <Input
-                      id="subject"
+                    <FormField
+                      control={form.control}
                       name="subject"
-                      type="text"
-                      required
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                      placeholder="How can we help you?"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Subject *</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="How can we help you?"
+                              className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                  </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
-                    </label>
-                    <Textarea
-                      id="message"
+                    <FormField
+                      control={form.control}
                       name="message"
-                      rows={6}
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                      placeholder="Tell us more about your inquiry..."
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message *</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              rows={6}
+                              placeholder="Tell us more about your inquiry..."
+                              className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                  </div>
 
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full gradient-primary text-white py-3 text-lg font-semibold hover:opacity-90 transition-opacity"
-                  >
-                    {isSubmitting ? (
-                      "Sending..."
-                    ) : (
-                      <>
-                        Send Message
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </>
-                    )}
-                  </Button>
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full gradient-primary text-white py-3 text-lg font-semibold hover:opacity-90 transition-opacity"
+                    >
+                      {isSubmitting ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          Send Message
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </>
+                      )}
+                    </Button>
 
-                  <p className="text-xs text-gray-500 text-center">
-                    We typically respond within 24 hours during business days.
-                  </p>
-                </form>
+                    <p className="text-xs text-gray-500 text-center">
+                      We typically respond within 24 hours during business days.
+                    </p>
+                  </form>
+                </Form>
               </CardContent>
             </Card>
           </div>

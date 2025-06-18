@@ -1,4 +1,8 @@
+
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,49 +11,67 @@ import { CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const demoFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  company: z.string().min(2, "Company name must be at least 2 characters"),
+  phone: z.string().optional().refine(
+    (val) => !val || /^\+?[\d\s\-\(\)]+$/.test(val),
+    "Please enter a valid phone number"
+  ),
+  employees: z.string().optional(),
+  message: z.string().optional(),
+});
+
+type DemoFormData = z.infer<typeof demoFormSchema>;
 
 const Demo = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    employees: '',
-    message: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm<DemoFormData>({
+    resolver: zodResolver(demoFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      phone: "",
+      employees: "",
+      message: "",
+    },
+  });
+
+  const handleSubmit = async (data: DemoFormData) => {
     setIsSubmitting(true);
     
     try {
       console.log("Submitting demo request to Supabase Edge Function...");
       
-      const { data, error } = await supabase.functions.invoke('send-demo-email', {
-        body: formData
+      const { data: responseData, error } = await supabase.functions.invoke('send-demo-email', {
+        body: data
       });
 
       if (error) {
         throw error;
       }
 
-      console.log("Demo request response:", data);
+      console.log("Demo request response:", responseData);
       
       toast({
         title: "Demo Request Submitted Successfully!",
         description: "We've sent a confirmation email to your address. Our team will contact you within 24 hours to schedule your personalized demo.",
       });
       
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        employees: '',
-        message: ''
-      });
+      form.reset();
     } catch (error) {
       console.error("Error submitting demo request:", error);
       toast({
@@ -60,13 +82,6 @@ const Demo = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
   };
 
   const demoIncludes = [
@@ -145,125 +160,146 @@ const Demo = () => {
             <div>
               <Card className="bg-white shadow-xl border-0 hover-lift">
                 <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
-                        </label>
-                        <Input
-                          id="name"
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
                           name="name"
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                          placeholder="John Doe"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Full Name *</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="John Doe"
+                                  className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Work Email *
-                        </label>
-                        <Input
-                          id="email"
+                        <FormField
+                          control={form.control}
                           name="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                          placeholder="john@company.com"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Work Email *</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="email"
+                                  placeholder="john@company.com"
+                                  className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                          Company Name *
-                        </label>
-                        <Input
-                          id="company"
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
                           name="company"
-                          type="text"
-                          required
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                          placeholder="Your Company"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Company Name *</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Your Company"
+                                  className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                          Phone Number
-                        </label>
-                        <Input
-                          id="phone"
+                        <FormField
+                          control={form.control}
                           name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                          placeholder="+1 (555) 123-4567"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Phone Number</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="tel"
+                                  placeholder="+1 (555) 123-4567"
+                                  className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
                       </div>
-                    </div>
 
-                    <div>
-                      <label htmlFor="employees" className="block text-sm font-medium text-gray-700 mb-2">
-                        Number of Employees
-                      </label>
-                      <select
-                        id="employees"
+                      <FormField
+                        control={form.control}
                         name="employees"
-                        value={formData.employees}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-simplex-primary focus:border-simplex-primary"
-                      >
-                        <option value="">Select range</option>
-                        <option value="1-50">1-50 employees</option>
-                        <option value="51-200">51-200 employees</option>
-                        <option value="201-500">201-500 employees</option>
-                        <option value="500+">500+ employees</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Tell us about your HR needs
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleChange}
-                        className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
-                        placeholder="What specific HR challenges are you looking to solve?"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Number of Employees</FormLabel>
+                            <FormControl>
+                              <select
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-simplex-primary focus:border-simplex-primary"
+                                {...field}
+                              >
+                                <option value="">Select range</option>
+                                <option value="1-50">1-50 employees</option>
+                                <option value="51-200">51-200 employees</option>
+                                <option value="201-500">201-500 employees</option>
+                                <option value="500+">500+ employees</option>
+                              </select>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
 
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className="w-full gradient-primary text-white py-3 text-lg font-semibold hover:opacity-90 transition-opacity"
-                    >
-                      {isSubmitting ? (
-                        "Submitting..."
-                      ) : (
-                        <>
-                          Schedule My Demo
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </>
-                      )}
-                    </Button>
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Tell us about your HR needs</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                rows={4}
+                                placeholder="What specific HR challenges are you looking to solve?"
+                                className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                    <p className="text-xs text-gray-500 text-center">
-                      By submitting this form, you agree to our Terms of Service and Privacy Policy.
-                    </p>
-                  </form>
+                      <Button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full gradient-primary text-white py-3 text-lg font-semibold hover:opacity-90 transition-opacity"
+                      >
+                        {isSubmitting ? (
+                          "Submitting..."
+                        ) : (
+                          <>
+                            Schedule My Demo
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                          </>
+                        )}
+                      </Button>
+
+                      <p className="text-xs text-gray-500 text-center">
+                        By submitting this form, you agree to our Terms of Service and Privacy Policy.
+                      </p>
+                    </form>
+                  </Form>
                 </CardContent>
               </Card>
             </div>
