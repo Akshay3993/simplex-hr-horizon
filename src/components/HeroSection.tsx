@@ -23,7 +23,7 @@ const HeroSection = () => {
             
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
               Simplify Workforce
-              <span className="text-gradient block">Management</span>
+              <span className="text-gradient block mb-8">Management</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
