@@ -20,15 +20,26 @@ import {
 } from "@/components/ui/form";
 
 const demoFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .regex(/^[A-Za-z\s]+$/, "Name can only contain letters and spaces"),
   email: z.string().email("Please enter a valid email address"),
-  company: z.string().min(2, "Company name must be at least 2 characters"),
-  phone: z.string().optional().refine(
-    (val) => !val || /^\+?[\d\s\-\(\)]+$/.test(val),
-    "Please enter a valid phone number"
-  ),
+  company: z.string()
+    .min(2, "Company name must be at least 2 characters")
+    .regex(/[A-Za-z]/, "Company name must contain at least one letter"),
+  phone: z.string()
+    .optional()
+    .refine(
+      (val) => !val || /^\d{10}$/.test(val),
+      "Phone number must be exactly 10 digits"
+    ),
   employees: z.string().optional(),
-  message: z.string().optional(),
+  message: z.string()
+    .optional()
+    .refine(
+      (val) => !val || /[A-Za-z]/.test(val),
+      "Message must contain at least one letter"
+    ),
 });
 
 type DemoFormData = z.infer<typeof demoFormSchema>;

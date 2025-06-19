@@ -19,10 +19,16 @@ import {
 } from "@/components/ui/form";
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .regex(/^[A-Za-z\s]+$/, "Name can only contain letters and spaces"),
   email: z.string().email("Please enter a valid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  subject: z.string()
+    .min(5, "Subject must be at least 5 characters")
+    .regex(/[A-Za-z]/, "Subject must contain at least one letter"),
+  message: z.string()
+    .min(10, "Message must be at least 10 characters")
+    .regex(/[A-Za-z]/, "Message must contain at least one letter"),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
