@@ -110,28 +110,6 @@ const FeaturesSection = () => {
             </div>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-white to-simplex-light rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto border border-white/50 hover-lift">
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-24 h-24 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-lg">
-                <Building2 className="h-12 w-12 text-white" />
-              </div>
-            </div>
-            <h3 className="text-3xl font-bold text-black mb-4">
-              Ready to Experience These Features?
-            </h3>
-            <p className="text-black mb-6 text-lg">
-              Schedule a personalized demo to see how Simplex HR can transform your workforce management.
-            </p>
-            <Link to="/demo">
-              <Button className="gradient-primary text-white hover:opacity-90 transition-opacity">
-                Schedule Demo Now
-              </Button>
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   );
