@@ -17,6 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Linkedin, Twitter, Facebook } from "lucide-react";
 
 const contactFormSchema = z.object({
   name: z.string()
@@ -160,13 +161,13 @@ const ContactSection = () => {
               <h4 className="text-lg font-semibold text-gray-900 mb-4">Follow Us</h4>
               <div className="flex space-x-4">
                 <a href="#" className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors">
-                  <span className="text-sm font-bold">Li</span>
+                  <Linkedin className="h-5 w-5" />
                 </a>
                 <a href="#" className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors">
-                  <span className="text-sm font-bold">Tw</span>
+                  <Twitter className="h-5 w-5" />
                 </a>
                 <a href="#" className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors">
-                  <span className="text-sm font-bold">Fb</span>
+                  <Facebook className="h-5 w-5" />
                 </a>
               </div>
             </div>
