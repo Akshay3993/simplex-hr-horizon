@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,6 +88,15 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Improve focus accessibility */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--simplex-accent));
+    outline-offset: 2px;
+  }
 }
 
 @layer utilities {
@@ -163,6 +171,29 @@
 
   .section-spacing {
     @apply py-16 lg:py-20;
+  }
+
+  /* Accessibility improvements */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Better contrast for links */
+  a {
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.3s ease;
+  }
+
+  a:hover {
+    text-decoration-color: currentColor;
   }
 }
 
