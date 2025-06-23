@@ -138,7 +138,7 @@ const TrustSection = () => {
               <div className="text-sm text-gray-600">Uptime SLA</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">< 4hr</div>
+              <div className="text-2xl font-bold text-gray-900">&lt; 4hr</div>
               <div className="text-sm text-gray-600">Response Time</div>
             </div>
             <div className="text-center">
