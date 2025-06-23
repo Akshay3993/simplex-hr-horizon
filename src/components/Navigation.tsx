@@ -10,7 +10,6 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "Features", href: "#features" },
-    { name: "About", href: "#about" },
     { name: "Why Simplex", href: "#why-simplex" },
     { name: "Contact", href: "#contact" }
   ];
