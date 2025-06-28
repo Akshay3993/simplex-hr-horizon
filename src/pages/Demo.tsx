@@ -97,7 +97,6 @@ const Demo = () => {
   const demoIncludes = [
     "Personalized system walkthrough",
     "Custom feature demonstration",
-    "Integration possibilities review",
     "Pricing and implementation discussion",
     "Q&A with our HR experts",
     "Free trial access"
@@ -199,7 +198,6 @@ const Demo = () => {
                               <FormControl>
                                 <Input
                                   type="email"
-                                  placeholder="employee@company.com"
                                   className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
                                   {...field}
                                 />
@@ -237,7 +235,6 @@ const Demo = () => {
                               <FormControl>
                                 <Input
                                   type="tel"
-                                  placeholder="+1 (555) 123-4567"
                                   className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
                                   {...field}
                                 />

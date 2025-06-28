@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -10,7 +9,6 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "Features", href: "#features" },
-    { name: "Why Simplex", href: "#why-simplex" },
     { name: "Contact", href: "#contact" }
   ];
 

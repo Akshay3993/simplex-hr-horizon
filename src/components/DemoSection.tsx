@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -65,7 +64,6 @@ const DemoSection = () => {
   const demoIncludes = [
     "Personalized system walkthrough",
     "Custom feature demonstration",
-    "Integration possibilities review",
     "Pricing and implementation discussion",
     "Q&A with our HR experts",
     "Free trial access"
@@ -147,7 +145,6 @@ const DemoSection = () => {
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="john@company.com"
                                 className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
                                 {...field}
                               />
@@ -185,7 +182,6 @@ const DemoSection = () => {
                             <FormControl>
                               <Input
                                 type="tel"
-                                placeholder="+1 (555) 123-4567"
                                 className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
                                 {...field}
                               />

@@ -31,7 +31,7 @@ const FeaturesSection = () => {
     },
     {
       icon: Search,
-      title: "Recruitment Tracking",
+      title: "Production Tracking",
       description: "Complete applicant tracking system from job posting to onboarding with interview scheduling and evaluation.",
       color: "from-cyan-500 to-cyan-600"
     },
@@ -90,24 +90,6 @@ const FeaturesSection = () => {
                 </p>
               </CardContent>
             </Card>
-          ))}
-        </div>
-
-        {/* Additional Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
-          {[
-            { icon: FileText, title: "Training Management", color: "bg-blue-500" },
-            { icon: Clock, title: "Project Timesheets", color: "bg-green-500" },
-            { icon: Map, title: "Field Force Tracking", color: "bg-purple-500" },
-            { icon: Phone, title: "Helpdesk & Surveys", color: "bg-orange-500" },
-            { icon: PieChart, title: "Analytics & Reports", color: "bg-red-500" }
-          ].map((item, index) => (
-            <div key={index} className="text-center animate-fade-in-up" style={{ animationDelay: `${1 + index * 0.1}s` }}>
-              <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-4 hover-lift shadow-lg`}>
-                <item.icon className="h-8 w-8 text-white" />
-              </div>
-              <h4 className="font-semibold text-gray-900 text-sm">{item.title}</h4>
-            </div>
           ))}
         </div>
       </div>

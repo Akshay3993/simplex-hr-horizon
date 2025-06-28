@@ -87,22 +87,8 @@ const ContactSection = () => {
       icon: Mail,
       title: "Email Us",
       description: "Get in touch via email",
-      contact: "hello@simplexhr.com",
-      action: "mailto:hello@simplexhr.com"
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      description: "Speak with our team",
-      contact: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      description: "Our headquarters",
-      contact: "123 Business Ave, Suite 100\nSan Francisco, CA 94105",
-      action: "#"
+      contact: "simplexhrsol@gmail.com",
+      action: "mailto:simplexhrsol@gmail.com"
     },
     {
       icon: Clock,
@@ -207,7 +193,6 @@ const ContactSection = () => {
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="employee@company.com"
                                 className="border-gray-300 focus:border-simplex-primary focus:ring-simplex-primary"
                                 {...field}
                               />
