@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -146,13 +147,28 @@ const ContactSection = () => {
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-gray-900 mb-4">Follow Us</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors">
+                <a 
+                  href="http://www.linkedin.com/in/simplexhr-solutions" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors"
+                >
                   <Linkedin className="h-5 w-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors">
+                <a 
+                  href="https://x.com/simplexHRsol" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors"
+                >
                   <Twitter className="h-5 w-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors">
+                <a 
+                  href="https://www.facebook.com/profile.php?id=61578118108409" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-simplex-primary rounded-lg flex items-center justify-center text-white hover:bg-simplex-accent transition-colors"
+                >
                   <Facebook className="h-5 w-5" />
                 </a>
               </div>
